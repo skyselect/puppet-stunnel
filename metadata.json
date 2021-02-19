@@ -1,6 +1,6 @@
 {
   "name": "arusso-stunnel",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "arusso",
   "summary": "stunnel management",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "project_page": "https://github.com/arusso/puppet-stunnel",
   "issues_url": "https://github.com/arusso/puppet-stunnel/issues",
   "dependencies": [
-    {"version_requirement":">= 4.0.0 <5.0.0","name":"puppetlabs/stdlib"}
+    {"version_requirement":">= 4.0.0 <7.0.0","name":"puppetlabs/stdlib"}
   ],
   "operatingsystem_support": [
     {
@@ -21,7 +21,7 @@
     },
     {
     "operatingsystem": "Debian",
-    "operatingsystemrelease": [ "6", "7" ]
+    "operatingsystemrelease": [ "10" ]
     }
   ],
   "tags": [
