@@ -81,7 +81,6 @@ define stunnel::tun (
   $global_opts = { },
   $service_opts = { },
   $ensure = 'present',
-  $number_of_connections = 2048,
 ) {
   require stunnel
   include stunnel::data
