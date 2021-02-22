@@ -11,5 +11,11 @@ ExecStart=<%= @svc_bin %> <%= @config_file %>
 KillMode=process
 TimeoutStopSec=2
 
+User=stunnel4
+Group=stunnel4
+LimitNPROC=<%= @number_of_connections %>      # ulimit -u             Number of Processes
+LimitNOFILE=<%= @number_of_connections * 2 %> # ulimit -n             Number of File Descriptors
+
+
 [Install]
 WantedBy=multi-user.target
