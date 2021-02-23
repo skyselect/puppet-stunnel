@@ -11,5 +11,8 @@ ExecStart=<%= @svc_bin %> <%= @config_file %>
 KillMode=process
 TimeoutStopSec=2
 
+Restart=on-failure
+RestartSec=10s
+
 [Install]
 WantedBy=multi-user.target
