@@ -24,7 +24,18 @@ class stunnel::data {
       }
     }
     /Debian/: {
-      $package = [ 'stunnel4', 'lsb-base' ]
+      $package = {
+        'stunnel4' => {
+          ensure  => 'latest',
+          require => [
+            Apt::Pin['stunnel4'],
+            Class['apt::backports'],
+          ],
+        },
+        'lsb-base' => {
+          ensure => 'present'
+        }
+      }
       $service = 'stunnel'
       $bin_name = 'stunnel4'
       $bin_path = '/usr/bin'
@@ -37,10 +48,21 @@ class stunnel::data {
       $setuid = 'root'
 
       if ($::operatingsystem == 'Ubuntu' and versioncmp($::operatingsystemrelease, '15.04') >= 0) or
-         ($::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '8.0') >= 0) {
+        ($::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '8.0') >= 0) {
         $service_init_system = 'systemd'
       } else {
         $service_init_system = 'sysv'
+      }
+
+      if (!defined(Class['apt::backports'])) {
+        class { 'apt::backports':
+        }
+      }
+
+      apt::pin { 'stunnel4':
+        packages => ['stunnel4'],
+        release  => 'buster-backports',
+        priority => 700,
       }
     }
 
