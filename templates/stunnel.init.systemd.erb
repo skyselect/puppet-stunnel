@@ -14,5 +14,8 @@ TimeoutStopSec=2
 Restart=on-failure
 RestartSec=10s
 
+LimitNOFILE=20480
+LimitNPROC=10000
+
 [Install]
 WantedBy=multi-user.target
